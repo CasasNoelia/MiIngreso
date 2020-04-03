@@ -58,5 +58,3 @@ def Empleo_Registro(request):
     return render(request, 'empleo_registro.html')
 
 
-def Empresa_Registro(request):
-    return render(request, 'empresa_registro.html')
