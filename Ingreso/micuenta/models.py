@@ -9,7 +9,10 @@ class Usuario(models.Model):
     nombre = models.CharField(max_length=40, null=True)
     apellido = models.CharField(max_length=40, null=True)
 
-# elimine empresa_ agregue el nombre emmpresa en Empleo
+    def __str__(self):
+        return self.ci
+
+# elimine empresa_ agregue el nombre emmpresa en Empleo. Empleo equivale a products
 
 class Empleo(models.Model):
 
@@ -23,12 +26,14 @@ class Empleo(models.Model):
     fecha_ingreso = models.DateField()
     salario_nominal = models.IntegerField()
     grupo= models.CharField(max_length=200, null=True, choices=GRUPO)
-    valor_dia = models.DecimalField(decimal_places=2, max_digits=5)
-    valor_hora = models.DecimalField(decimal_places=2, max_digits=5)
+    valor_dia = models.DecimalField(decimal_places=2, max_digits=5, blank=True)
+    valor_hora = models.DecimalField(decimal_places=2, max_digits=5, blank=True)
 
-
+    def __str__(self):
+        return self.nombre_empresa
 
 # Usuario equivale a Order
+
 class Recibo(models.Model):
 
     STATUS = (
@@ -36,8 +41,11 @@ class Recibo(models.Model):
         ('Hs en feriado','Hs en feriado'),
         ('Dia desc. Trabajado','Dia desc. Trabajado')
     )
-    #Usuario =
-    #Empleo =
+    usuario = models.ForeignKey(Usuario, null=True, on_delete=models.SET_NULL)
+    empleo = models.ForeignKey(Empleo, null=True, on_delete=models.SET_NULL)
     fecha_creacion = models.DateTimeField(auto_now_add=True, null=True)         #revisar auto now
     status = models.CharField(max_length=200, null=True, choices=STATUS)
     horas_extras = models.IntegerField()
+
+    def __str__(self):
+        return self.status

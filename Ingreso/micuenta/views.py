@@ -58,3 +58,6 @@ def Empleo_Registro(request):
     return render(request, 'empleo_registro.html')
 
 
+def Informacion(request):
+    return render(request, 'micuenta/informacion.html')
+
