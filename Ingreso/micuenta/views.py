@@ -1,11 +1,13 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm
+from .models import *
 
 from django.contrib.auth import authenticate, login, logout
 
 from django.contrib import messages
 
+from .forms import CreateUserForm
 
 def registerPage(request):
     form = CreateUserForm()
@@ -49,13 +51,18 @@ def Home(request):
 def Recibo(request):
     return render(request, 'micuenta/recibo.html')
 
+def Empleo(request):
+    return render(request,'micuenta/empleo.html')
 
-def Usuario_Registro(request):
-    return render(request, 'usuario_registro.html')
+def Usuario (request, pk_test):
+    usuario = Usuario.objects.get(id=pk_test)
 
+    #orders = usuario.order_set.all()
+    #order_count = orders.count()
 
-def Empleo_Registro(request):
-    return render(request, 'empleo_registro.html')
+    context = {'usuario':usuario}
+    return render(request, 'micuenta/usuario.html',context)
+
 
 
 def Informacion(request):

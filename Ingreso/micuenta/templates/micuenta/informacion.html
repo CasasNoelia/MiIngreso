@@ -3,17 +3,19 @@
 {% load static %}
 {% block content %}
 
-    <div class="row">
-        <div class="col-md-6">
-            <div class="card card-body">
+<h3>Salario Nominal</h3>
 
-                <form action="" method="POST">
-                    {% csrf_token %}
-                    {{form}}
+<h3>Salario Liquido</h3>
 
-                    <input type="submit" name="Submit">
-                </form>
-            </div>
-      </div>
-</div>
+<h3>Horas extras</h3>
+    <table>
+        <th>
+            <td><a href="https://www.gub.uy/ministerio-trabajo-seguridad-social/politicas-y-gestion/derecho-reglamentacion-laboral/derecho-laboral-uruguayo/horas-extras">Página Oficial_ MTSS</a></td>
+        </th>
+    </table>
+
+<h3>Franjas Salariales</h3>
+
+
+
 {% endblock content %}
